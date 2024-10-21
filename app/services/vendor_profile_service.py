@@ -18,3 +18,14 @@ class VendorProfileService:
             self.db.rollback()
             print(f"Error: {e}")
             raise e
+
+    def get_all_vendors(self):
+        try:
+            vendor_profile_list = self.db.query(VendorProfile).all()
+            if not vendor_profile_list:
+                return None
+            return vendor_profile_list
+        except Exception as e:
+            self.db.rollback()
+            print(f"Error: {e}")
+            raise e

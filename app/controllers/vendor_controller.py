@@ -15,8 +15,11 @@ class VendorController:
 
     def get_vendor_profile(self, userId: int):
         return self.vendor_service.get_vendor_profile(userId)
+    
+    def get_all_vendors(self):
+        return self.vendor_service.get_all_vendors()
 
-    def get_menu_items(self, userId: int):
+    def get_menu_items_by_user_id(self, userId: int):
         user_profile = self.vendor_service.get_vendor_profile(userId)
         if (user_profile is None):
             return []
@@ -26,7 +29,20 @@ class VendorController:
         if len(menuItems) < 1:
             return []
 
-        result = []
+        result: list[MenuItem] = []
+        for i in menuItems:
+            item : MenuItem = i
+            result.append(item)
+            
+        return result
+
+    def get_menu_items_by_vendor(self, vendorProfileId: int):
+        menuItems = self.menu_service.get_menu_items_for_vendor(vendorProfileId)
+
+        if len(menuItems) < 1:
+            return []
+
+        result: list[MenuItem] = []
         for i in menuItems:
             item : MenuItem = i
             result.append(item)
