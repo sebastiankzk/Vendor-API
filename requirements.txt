@@ -5,3 +5,4 @@ mysql-connector-python
 databases
 python-dotenv
 pytest
+mangum
