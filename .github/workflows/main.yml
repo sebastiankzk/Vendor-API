@@ -57,6 +57,8 @@ jobs:
           cd -
           # Include all FastAPI app files, including main.py, directly in the zip
           zip -g api.zip main.py
+          zip -g api.zip -r api/  # Assuming you also want to include the 'api' folder
+          zip -g api.zip -r app/  # Include the 'app' folder if needed
       - name: Add API files to Zip file
         run: cd ./api && zip -g ../api.zip -r .
       - name: Upload zip file artifact
