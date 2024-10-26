@@ -16,7 +16,7 @@ DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 # Database URL
 # connectionString = getenv('DB_CONNECTION_STRING')
-connectionString = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+connectionString: str = f"mysql+mysqlconnector://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
 # Check if connectionString is None
 if connectionString is None:
