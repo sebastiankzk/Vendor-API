@@ -23,7 +23,13 @@ if connectionString is None:
     raise ValueError("DB_CONNECTION_STRING environment variable not set.")
 
 # SQLAlchemy Engine
-engine = create_engine(connectionString, connect_args={"charset": "utf8mb4"})
+try:
+    engine = create_engine(connectionString, connect_args={"charset": "utf8mb4"})
+    # Optionally, test the connection
+    with engine.connect() as conn:
+        print("Connected to the database successfully.")
+except Exception as e:
+    raise ConnectionError(f"Failed to connect to the database: {e}")
 
 # Session Local
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
