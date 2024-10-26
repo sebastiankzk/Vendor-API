@@ -1,5 +1,5 @@
 fastapi
-pydantic
+pydantic-core
 uvicorn
 sqlalchemy
 mysql-connector-python
