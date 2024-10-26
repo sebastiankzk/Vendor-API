@@ -8,11 +8,15 @@ from sqlalchemy.orm import sessionmaker
 # Get parameters from env file
 load_dotenv(dotenv_path="../.env")
 
-FASTAPI_URL = getenv('FASTAPI_URL')
-FASTAPI_URL_PORT = getenv('FASTAPI_URL_PORT')
+# Read environment variables for database credentials
+DB_HOST = os.getenv("DB_HOST")
+DB_NAME = os.getenv("DB_NAME")
+DB_USER = os.getenv("DB_USER")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
 
 # Database URL
-connectionString = getenv('DB_CONNECTION_STRING')
+# connectionString = getenv('DB_CONNECTION_STRING')
+connectionString = f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
 # Check if connectionString is None
 if connectionString is None:
