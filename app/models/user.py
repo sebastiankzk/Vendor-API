@@ -3,7 +3,7 @@ from app.models.role import Role
 from app.models import Base
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'USER'
 
     userID = Column(Integer, primary_key=True)
     username = Column(String(32), unique=True, nullable=False)

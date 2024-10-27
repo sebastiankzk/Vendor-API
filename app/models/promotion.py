@@ -3,7 +3,7 @@ from app.models import Base
 from app.models.vendor_profile import VendorProfile
 
 class Promotion(Base):
-    __tablename__ = "promotion"
+    __tablename__ = "PROMOTION"
 
     promotionID = Column(Integer, primary_key=True)
     promoCode = Column(String(16), nullable=False)

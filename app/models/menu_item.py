@@ -3,7 +3,7 @@ from app.models import Base
 from app.models.vendor_profile import VendorProfile
 
 class MenuItem(Base):
-    __tablename__ = "menuitem"
+    __tablename__ = "MENUITEM"
 
     menuItemID = Column(Integer, primary_key=True)
     menuItemName = Column(String(50), nullable=False)
