@@ -22,45 +22,30 @@ jobs:
         # This action sets up a Python environment for use in actions
         uses: actions/setup-python@v2
         with:
-          python-version: 3.9
+          python-version: 3.8
           # optional: architecture: x64 x64 or x86. Defaults to x64 if not specified
 
-      # Step-2 Install Python Virtual ENV
-      - name: Install Python Virtual ENV
-        run: pip3 install virtualenv
-
-      # Step-3 Setup Virtual ENV
-      # https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
-      - name:  Virtual ENV
-        uses: actions/cache@v2
-        id: cache-venv # name for referring later
-        with:
-          path: venv # what we cache: the Virtual ENV
-          # The cache key depends on requirements.txt
-          key: ${{ runner.os }}-venv-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-venv-
-
-      # Step-4 Build a Virtual ENV, but only if it doesn't already exist
-      - name: Activate Virtual ENV
-        run: python -m venv venv && source venv/bin/activate && pip3 install -r requirements.txt
-        if: steps.cache-venv.outputs.cache-hit != 'true'
+      - name: Setup and Install Dependencies
+        run: |
+          python -m venv venv
+          . venv/bin/activate
+          pip install -r requirements.txt
 
       - name: Run Tests   
         # Note that you have to activate the virtualenv in every step
         # because GitHub actions doesn't preserve the environment   
         run: . venv/bin/activate && pytest
-      - name: Create archive of dependencies
+
+      - name: Create Zip Archive
         run: |
-          cd ./venv/lib/python3.9/site-packages
+          cd ./venv/lib/python3.8/site-packages
           zip -r9 ../../../../api.zip .
           cd -
-          # Include all FastAPI app files, including main.py, directly in the zip
           zip -g api.zip main.py
-          zip -g api.zip -r api/  # Assuming you also want to include the 'api' folder
-          zip -g api.zip -r app/  # Include the 'app' folder if needed
-      - name: Add API files to Zip file
-        run: cd ./api && zip -g ../api.zip -r .
+          zip -g api.zip -r api/
+          zip -g api.zip -r app/
+
+
       - name: Upload zip file artifact
         uses: actions/upload-artifact@v4
         with:
