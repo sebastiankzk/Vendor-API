@@ -21,7 +21,7 @@ def get_all_vendors():
     return vendor_profile
 
 # Vendor Menu by user id
-@router.get("/menu_items/get/{user_id}", description="Retrieve menu items for vendor")
+@router.get("/menu_items/get/user_id/{user_id}", description="Retrieve menu items for vendor")
 def get_menu_items_by_user_id(user_id: int):
     menu = vendor_controller.get_menu_items_by_user_id(user_id)
     if menu is None:
@@ -37,7 +37,7 @@ def get_menu_items_by_vendor_id(vendor_profile_id: int):
     return menu   
 
 # Vendor promotion
-@router.get("/vendor/promotion/get/{user_id}", description="Retrieve promotions for vendor")
+@router.get("/promotion/get/{user_id}", description="Retrieve promotions for vendor")
 def get_promotion(user_id: int):
     try:
         promotion = vendor_controller.get_promotions(user_id)
