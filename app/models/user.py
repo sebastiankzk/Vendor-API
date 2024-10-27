@@ -8,5 +8,5 @@ class User(Base):
     userID = Column(Integer, primary_key=True)
     username = Column(String(32), unique=True, nullable=False)
     userPassword = Column(String(255), nullable=False)
-    roleID = Column(Integer, ForeignKey(Role.roleID), nullable=False)
+    roleID = Column(Integer, nullable=False)
     isDisabled = Column(Boolean, nullable=False)

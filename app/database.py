@@ -5,9 +5,6 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import DeclarativeMeta, declarative_base
 from sqlalchemy.orm import sessionmaker
 
-# Get parameters from env file
-load_dotenv(dotenv_path="../.env")
-
 # Read environment variables for database credentials
 DB_HOST = os.getenv("DB_HOST")
 DB_NAME = os.getenv("DB_NAME")

@@ -11,6 +11,4 @@ class Promotion(Base):
     discountType = Column(String(16), nullable=False)
     minimumSpending = Column(Double, nullable=False)
     isValid = Column(Boolean, nullable=False)
-    vendorProfileID = Column(Integer, ForeignKey(VendorProfile.vendorProfileID), nullable=False)
-
-    __table_args__ = tuple(UniqueConstraint(promoCode, vendorProfileID))
+    vendorProfileID = Column(Integer, nullable=False)

@@ -11,4 +11,4 @@ class VendorProfile(Base):
     email = Column(String(64), unique=True, nullable=False)
     phone = Column(CHAR(8), unique=True, nullable=False)
     status = Column(Boolean, nullable=False)
-    userID = Column(Integer, ForeignKey(User.userID), unique=True, nullable=False)
+    userID = Column(Integer, unique=True, nullable=False)

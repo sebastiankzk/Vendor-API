@@ -11,6 +11,4 @@ class MenuItem(Base):
     menuItemImage = Column(String(500), nullable=True)
     menuItemDesc = Column(String(250), nullable=True)
     isValid = Column(Boolean, nullable=False)
-    vendorProfileID = Column(Integer, ForeignKey(VendorProfile.vendorProfileID))
-
-    __table_args__ = tuple(UniqueConstraint(menuItemName, vendorProfileID))
+    vendorProfileID = Column(Integer)

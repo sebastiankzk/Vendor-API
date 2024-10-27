@@ -1,5 +1,5 @@
 from fastapi import APIRouter, HTTPException
-from app.controllers.vendor_controller import VendorController  # Corrected import path
+from app.controllers.vendor_controller import VendorController
 
 router = APIRouter()
 vendor_controller = VendorController()
